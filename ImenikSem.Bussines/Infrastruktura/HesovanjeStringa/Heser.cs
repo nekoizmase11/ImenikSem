@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ImenikSem.Bussines.Infrastruktura.HesovanjeStringa
 {
@@ -33,7 +30,7 @@ namespace ImenikSem.Bussines.Infrastruktura.HesovanjeStringa
             string trimovanaHesovanaSifraKorisnika = hesovanaSifraKorisnika.Trim();
 
             var rez = string.Equals(unetaSifraHesovana, trimovanaHesovanaSifraKorisnika, StringComparison.Ordinal);
-            int w = 2;
+
             return rez;
         }
     }

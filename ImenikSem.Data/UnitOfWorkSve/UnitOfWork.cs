@@ -1,12 +1,7 @@
 ﻿using ImenikSem.Data.Interfejsi;
 using ImenikSem.Data.Repozitorijumi;
 using ImenikSem.Data.UnitOfWorkSve.Interfejsi;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImenikSem.Data.UnitOfWorkSve
 {

@@ -1,15 +1,8 @@
-﻿using AutoMapper;
-using ImenikSem.Bussines;
+﻿using ImenikSem.Bussines;
 using ImenikSem.Bussines.BiznisModeli;
-using ImenikSem.Data;
-using ImenikSem.Prezentation.Web.AutoMapperConfiguracija;
 using ImenikSem.Prezentation.Web.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ImenikSem.Prezentation.Web.Controllers
@@ -40,8 +33,8 @@ namespace ImenikSem.Prezentation.Web.Controllers
             return View(kontaktiPrezentacioniModel);
         }
 
+        //Web api
         [HttpGet]
-        //[Route("api/Tablic/check")]
         public ActionResult GetStrana(int strana, int brKontakataPoStrani)
         {
             string emailKorisnika = System.Web.HttpContext.Current.User.Identity.Name;
@@ -58,8 +51,8 @@ namespace ImenikSem.Prezentation.Web.Controllers
 
         }
 
+        //Web api
         [HttpGet]
-        //[Route("api/Tablic/check")]
         public ActionResult GetPretraga(int strana, int brKontakataPoStrani, string stringPretrage)
         {
             string emailKorisnika = System.Web.HttpContext.Current.User.Identity.Name;
@@ -163,7 +156,6 @@ namespace ImenikSem.Prezentation.Web.Controllers
             int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
 
             var listaKorisnika = _biznis.KontaktiServis.SviKontatiKorisnika(idTrenutnogKorisnika);
-            //JObject sadrzajFajla = (JObject)JToken.FromObject(listaKorisnika);
             var s = JsonConvert.SerializeObject(listaKorisnika);
 
             var putanjaFajla = Server.MapPath("~/PodaciZaPreuzimanje/kontakti.json");

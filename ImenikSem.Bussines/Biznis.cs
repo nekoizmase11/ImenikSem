@@ -1,11 +1,6 @@
 ﻿using ImenikSem.Bussines.InterfejsiZaServise;
 using ImenikSem.Bussines.Servisi;
 using ImenikSem.Data.UnitOfWorkSve.Interfejsi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImenikSem.Bussines
 {
