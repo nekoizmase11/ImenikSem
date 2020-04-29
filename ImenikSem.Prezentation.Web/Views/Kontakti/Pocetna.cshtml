@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ImenikSem.Prezentation.Web.Models.KontaktPrezentacioniModel>
+
+@{
+    ViewBag.Title = "Pocetna";
+}
+
+<h2>Svi kontakti:</h2>
+
+@if (ViewData["Greska"] != null)
+{
+    <span style="color:red; font-size:20px;">@ViewData["Greska"]</span>
+}
+
+
+<p>
+    <a class="btn btn-primary" href="/Kontakti/Kreiraj" role="button">Dodaj novi kontakt</a>
+    <a class="btn btn-primary" href="/Kontakti/PreuzmiKontakte" role="button">Preuzmi kontakte</a>
+</p>
+
+
+
+<label for="dropdownlista" class="pull-left" style="padding-top: 6px; padding-right: 5px;">Broj kontakata po strani:  </label>
+@Html.DropDownList("dropdownlista", new List<SelectListItem>
+{
+    new SelectListItem { Text = "10", Value = "10", Selected=true},
+    new SelectListItem { Text = "7", Value = "7"},
+    new SelectListItem { Text = "5", Value = "5"},
+    new SelectListItem { Text = "3", Value = "3"}
+}, new { @class = "form-control form-control-sm mr-3 w-75 pull-left", style = "width: 70px;" })
+
+<input id="pretraga" class="form-control form-control-sm mr-3 w-75 pull-right" type="search" placeholder="Pretraga" aria-label="Search">
+<i class="fa fa-search pull-right" aria-hidden="true" style="font-size:25px; padding-top: 4px; padding-right: 6px;"></i>
+
+
+<br>
+<br>
+
+<table class="table">
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination lista">
+    </ul>
+</nav>
+<div id="divcina"></div>
+
+<script src="~/Scripts/ImenikSkripta.js"></script>
