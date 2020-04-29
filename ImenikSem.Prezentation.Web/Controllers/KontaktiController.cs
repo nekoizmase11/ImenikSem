@@ -30,6 +30,8 @@ namespace ImenikSem.Prezentation.Web.Controllers
             string emailKorisnika = System.Web.HttpContext.Current.User.Identity.Name;
             int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
 
+            Session["UlogovanKorisnik"] = emailKorisnika;
+
             List<KontaktBiznisModel> kontaktiBiznisModel = _biznis.KontaktiServis.SviKontatiKorisnika(idTrenutnogKorisnika);
 
             List<KontaktPrezentacioniModel> kontaktiPrezentacioniModel =
@@ -169,7 +171,7 @@ namespace ImenikSem.Prezentation.Web.Controllers
 
             Response.Clear();
             Response.ContentType = "application/octet-stream";
-            Response.AppendHeader("Content-Disposition", "filename=fajl.json" );
+            Response.AppendHeader("Content-Disposition", "filename=kontakti.json");
             Response.TransmitFile(Server.MapPath("~/PodaciZaPreuzimanje/kontakti.json"));
             Response.End();
         }

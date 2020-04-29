@@ -148,7 +148,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="AutoMapperConfiguracija\MapperPrezentacioniProfil.cs" />
     <Compile Include="Controllers\BazniController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KontaktiController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Global.asax.cs">
