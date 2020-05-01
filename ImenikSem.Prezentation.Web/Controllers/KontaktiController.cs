@@ -2,7 +2,9 @@
 using ImenikSem.Bussines.BiznisModeli;
 using ImenikSem.Prezentation.Web.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 
 namespace ImenikSem.Prezentation.Web.Controllers
@@ -38,16 +40,20 @@ namespace ImenikSem.Prezentation.Web.Controllers
         public ActionResult GetStrana(int strana, int brKontakataPoStrani)
         {
             string emailKorisnika = System.Web.HttpContext.Current.User.Identity.Name;
-            int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
+            if (!String.IsNullOrWhiteSpace(emailKorisnika))
+            {
+                int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
 
-            List<KontaktPrezentacioniModel> kontaktiPrezentacioniModel;
+                List<KontaktPrezentacioniModel> kontaktiPrezentacioniModel;
 
-            kontaktiPrezentacioniModel =
-                Maper.Map<List<KontaktPrezentacioniModel>>(_biznis.KontaktiServis.SviKontatiKorisnika(idTrenutnogKorisnika));
+                kontaktiPrezentacioniModel =
+                    Maper.Map<List<KontaktPrezentacioniModel>>(_biznis.KontaktiServis.SviKontatiKorisnika(idTrenutnogKorisnika));
 
-            PaginacijaBiznisModel<KontaktPrezentacioniModel> vracanje = _biznis.KontaktiServis.KontaktiPoStrani(kontaktiPrezentacioniModel, strana, brKontakataPoStrani);
+                PaginacijaBiznisModel<KontaktPrezentacioniModel> vracanje = _biznis.KontaktiServis.KontaktiPoStrani(kontaktiPrezentacioniModel, strana, brKontakataPoStrani);
 
-            return Json(vracanje, JsonRequestBehavior.AllowGet);
+                return Json(vracanje, JsonRequestBehavior.AllowGet); 
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Morate biti ulogovani u aplikaciju 'Imenik'");
 
         }
 
@@ -56,17 +62,20 @@ namespace ImenikSem.Prezentation.Web.Controllers
         public ActionResult GetPretraga(int strana, int brKontakataPoStrani, string stringPretrage)
         {
             string emailKorisnika = System.Web.HttpContext.Current.User.Identity.Name;
-            int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
+            if (!String.IsNullOrWhiteSpace(emailKorisnika))
+            {
+                int idTrenutnogKorisnika = _biznis.KorisniciServis.KorisnikPoEmailu(emailKorisnika).Id;
 
-            List<KontaktPrezentacioniModel> kontaktiPrezentacioniModel;
+                List<KontaktPrezentacioniModel> kontaktiPrezentacioniModel;
 
-            kontaktiPrezentacioniModel =
-                Maper.Map<List<KontaktPrezentacioniModel>>(_biznis.KontaktiServis.Pretraga(idTrenutnogKorisnika, stringPretrage));
+                kontaktiPrezentacioniModel =
+                    Maper.Map<List<KontaktPrezentacioniModel>>(_biznis.KontaktiServis.Pretraga(idTrenutnogKorisnika, stringPretrage));
 
-            PaginacijaBiznisModel<KontaktPrezentacioniModel> vracanje = _biznis.KontaktiServis.KontaktiPoStrani(kontaktiPrezentacioniModel, strana, brKontakataPoStrani);
+                PaginacijaBiznisModel<KontaktPrezentacioniModel> vracanje = _biznis.KontaktiServis.KontaktiPoStrani(kontaktiPrezentacioniModel, strana, brKontakataPoStrani);
 
-            return Json(vracanje, JsonRequestBehavior.AllowGet);
-
+                return Json(vracanje, JsonRequestBehavior.AllowGet); 
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Morate biti ulogovani u aplikaciju 'Imenik'");
         }
 
         [HttpGet]

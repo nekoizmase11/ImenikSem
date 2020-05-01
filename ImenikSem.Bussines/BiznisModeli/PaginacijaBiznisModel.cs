@@ -21,11 +21,8 @@ namespace ImenikSem.Bussines.BiznisModeli
 			TrenutnaStrana = pageNumber;
 			UkupnoStrana = ukupnoStrana;
 			RaspoloziveStrane = raspoloziveStrane;
-			//UkupnoStrana = (int)Math.Ceiling(count / (double)pageSize);
-
 
 			Kontakti = items;
-			//AddRange(items);
 		}
 
 	}

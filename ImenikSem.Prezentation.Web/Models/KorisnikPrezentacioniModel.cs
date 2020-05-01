@@ -6,12 +6,12 @@ namespace ImenikSem.Prezentation.Web.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Niste uneli Email!")]
         [EmailAddress]
         [Display(Name = "Email:")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Niste uneli sifru!")]
         [DataType(DataType.Password)]
         [Display(Name = "Sifra:")]
         public string Sifra { get; set; }
