@@ -96,7 +96,6 @@
     <Compile Include="Repozitorijumi\GenerickiRepozitorijum\Repozitorijum.cs" />
     <Compile Include="Repozitorijumi\KontaktRepozitorijum.cs" />
     <Compile Include="Repozitorijumi\KorisnikRepozitorijum.cs" />
-    <Compile Include="Testnaklasa.cs" />
     <Compile Include="UnitOfWorkSve\Interfejsi\IUnitOfWork.cs" />
     <Compile Include="UnitOfWorkSve\UnitOfWork.cs" />
   </ItemGroup>

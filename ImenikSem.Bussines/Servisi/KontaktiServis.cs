@@ -68,6 +68,7 @@ namespace ImenikSem.Bussines.Servisi
             IEnumerable<Kontakt> listaKontakataPoKorisniku = _unitOfWork.Kontakti.Svi().Where(kontakt => kontakt.Korisnik_id.Equals(korisnikId));
             IEnumerable<Kontakt> FiltriranaLista = new List<Kontakt>();
             IEnumerable<Kontakt> ListaZaInkrement = new List<Kontakt>();
+            if (stringPretrage == "") stringPretrage = " ";
 
             if (Char.IsLetter(stringPretrage[0]))
             {

@@ -6,11 +6,11 @@ namespace ImenikSem.Prezentation.Web.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Niste uneli broj telefona!")]
+        [Required(ErrorMessage = "Niste uneli ime!")]
         [RegularExpression("[a-zA-Z]+", ErrorMessage = "Samo slova su dozvoljena!")]
         public string Ime { get; set; }
 
-        [Required(ErrorMessage = "Niste uneli broj telefona!")]
+        [Required(ErrorMessage = "Niste uneli prezime!")]
         [RegularExpression("[a-zA-Z]+", ErrorMessage = "Samo slova su dozvoljena!")]
         public string Prezime { get; set; }
 
