@@ -46,7 +46,6 @@ namespace ImenikSem.Bussines.Servisi
             {
                 for (int i = ((ukupnoStrana-1) - 4); i < ukupnoStrana; i++)
                 {
-                    //if (i + 1 <= ukupnoStrana)
                         paginacija.Add(i + 1);
                 }
             }
