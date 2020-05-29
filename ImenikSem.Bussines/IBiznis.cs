@@ -6,5 +6,6 @@ namespace ImenikSem.Bussines
     {
         IKontaktiServis KontaktiServis { get; }
         IKorisniciServis KorisniciServis { get; }
+        IMestaServis MestaServis { get; }
     }
 }

@@ -24,6 +24,19 @@ namespace ImenikSem.Bussines.Servisi
             List<KontaktBiznisModel> listaBiznisModelaKontakataPoKorisniku =
                 Maper.Map<List<KontaktBiznisModel>>(listaKontakataPoKorisniku);
 
+            foreach (var kontakt in listaBiznisModelaKontakataPoKorisniku)
+            {
+                if(kontakt.Mesto_id != null)
+                {
+                    string nazivMestakontakta = _unitOfWork.Mesta.PretragaPoId(kontakt.Mesto_id ?? 1).NazivMesta;
+                    kontakt.NazivMesta = nazivMestakontakta;
+                }
+                else
+                {
+                    kontakt.NazivMesta = "Neodredjeno";
+                }
+            }
+
             return listaBiznisModelaKontakataPoKorisniku.OrderBy(on => on.Ime).ToList();
         }
 
@@ -93,7 +106,20 @@ namespace ImenikSem.Bussines.Servisi
             }
 
             List<KontaktBiznisModel> listaBiznisModelaKontakataPoKorisniku =
-                Maper.Map<List<KontaktBiznisModel>>(FiltriranaLista);           
+                Maper.Map<List<KontaktBiznisModel>>(FiltriranaLista);
+
+            foreach (var kontakt in listaBiznisModelaKontakataPoKorisniku)
+            {
+                if (kontakt.Mesto_id != null)
+                {
+                    string nazivMestakontakta = _unitOfWork.Mesta.PretragaPoId(kontakt.Mesto_id ?? 1).NazivMesta;
+                    kontakt.NazivMesta = nazivMestakontakta;
+                }
+                else
+                {
+                    kontakt.NazivMesta = "Neodredjeno";
+                }
+            }
 
             return listaBiznisModelaKontakataPoKorisniku.OrderBy(on => on.Ime).ToList();
         }
@@ -149,6 +175,7 @@ namespace ImenikSem.Bussines.Servisi
             kontakt.Ime = kontaktBM.Ime;
             kontakt.Prezime = kontaktBM.Prezime;
             kontakt.Broj = kontaktBM.Broj;
+            kontakt.Mesto_id = kontaktBM.Mesto_id;
 
             try
             {
@@ -184,6 +211,19 @@ namespace ImenikSem.Bussines.Servisi
         {
             List<Kontakt> listaKontakata = _unitOfWork.Kontakti.NajcescePregledaniProcedura(idKorisnika);
             List<KontaktBiznisModel> listaBM = Maper.Map<List<KontaktBiznisModel>>(listaKontakata);
+
+            foreach (var kontakt in listaBM)
+            {
+                if (kontakt.Mesto_id != null)
+                {
+                    string nazivMestakontakta = _unitOfWork.Mesta.PretragaPoId(kontakt.Mesto_id ?? 1).NazivMesta;
+                    kontakt.NazivMesta = nazivMestakontakta;
+                }
+                else
+                {
+                    kontakt.NazivMesta = "Neodredjeno";
+                }
+            }
 
             return listaBM;
 

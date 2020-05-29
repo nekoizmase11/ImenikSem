@@ -86,16 +86,21 @@
     <Compile Include="Interfejsi\GenerickiInterfejsi\IRepozitorijum.cs" />
     <Compile Include="Interfejsi\IKontaktRepozitorijum.cs" />
     <Compile Include="Interfejsi\IKorisnikRepozitorijum.cs" />
+    <Compile Include="Interfejsi\IMestoRepozitorijum.cs" />
     <Compile Include="Kontakt.cs">
       <DependentUpon>ImenikSemEntityFramework.tt</DependentUpon>
     </Compile>
     <Compile Include="Korisnik.cs">
       <DependentUpon>ImenikSemEntityFramework.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mesto.cs">
+      <DependentUpon>ImenikSemEntityFramework.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repozitorijumi\GenerickiRepozitorijum\Repozitorijum.cs" />
     <Compile Include="Repozitorijumi\KontaktRepozitorijum.cs" />
     <Compile Include="Repozitorijumi\KorisnikRepozitorijum.cs" />
+    <Compile Include="Repozitorijumi\MestoRepozitorijum.cs" />
     <Compile Include="UnitOfWorkSve\Interfejsi\IUnitOfWork.cs" />
     <Compile Include="UnitOfWorkSve\UnitOfWork.cs" />
   </ItemGroup>

@@ -11,6 +11,7 @@ namespace ImenikSem.Data.UnitOfWorkSve
 
         public IKontaktRepozitorijum kontakti;
         public IKorisnikRepozitorijum korisnici;
+        public IMestoRepozitorijum mesta;
 
         public UnitOfWork(DbContext context)
         {
@@ -37,6 +38,18 @@ namespace ImenikSem.Data.UnitOfWorkSve
                     kontakti = new KontaktRepozitorijum(_context);
                 }
                 return kontakti;
+            }
+        }
+
+        public IMestoRepozitorijum Mesta
+        {
+            get
+            {
+                if (mesta == null)
+                {
+                    mesta = new MestoRepozitorijum(_context);
+                }
+                return mesta;
             }
         }
 

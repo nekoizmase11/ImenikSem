@@ -13,6 +13,9 @@ namespace ImenikSem.Bussines.Infrastruktura.AutomaperConfiguracija
 
             CreateMap<Korisnik, KorisnikBiznisModel>();
 
+            CreateMap<Mesto, MestoBiznisModel>();
+            CreateMap<MestoBiznisModel, Mesto >();
+
         }
     }
 }

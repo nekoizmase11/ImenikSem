@@ -12,17 +12,18 @@ namespace ImenikSem.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Kontakt
+    public partial class Mesto
     {
-        public int Id { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public int Korisnik_id { get; set; }
-        public string Broj { get; set; }
-        public Nullable<int> BrojPregleda { get; set; }
-        public Nullable<int> Mesto_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mesto()
+        {
+            this.Kontakt = new HashSet<Kontakt>();
+        }
     
-        public virtual Korisnik Korisnik { get; set; }
-        public virtual Mesto Mesto { get; set; }
+        public int Id { get; set; }
+        public string NazivMesta { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kontakt> Kontakt { get; set; }
     }
 }

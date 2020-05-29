@@ -20,5 +20,9 @@ namespace ImenikSem.Prezentation.Web.Models
         [MinLength(6, ErrorMessage = "Minimalni broj cifara je 6!")]
         [MaxLength(10, ErrorMessage = "Maksimalni broj cifara je 10!")]
         public string Broj { get; set; }
+
+        [Display(Name = "Mesto")]
+        public string NazivMesta { get; set; }
+
     }
 }

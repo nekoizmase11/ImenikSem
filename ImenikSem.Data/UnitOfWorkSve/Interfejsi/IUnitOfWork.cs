@@ -7,6 +7,7 @@ namespace ImenikSem.Data.UnitOfWorkSve.Interfejsi
     {
         IKorisnikRepozitorijum Korisnici { get; }
         IKontaktRepozitorijum Kontakti { get; }
+        IMestoRepozitorijum Mesta { get; }
         int KomitujIzmene();
     }
 }

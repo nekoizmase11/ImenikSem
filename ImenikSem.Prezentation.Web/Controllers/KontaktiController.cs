@@ -1,9 +1,11 @@
 ﻿using ImenikSem.Bussines;
 using ImenikSem.Bussines.BiznisModeli;
+using ImenikSem.Data;
 using ImenikSem.Prezentation.Web.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -82,6 +84,11 @@ namespace ImenikSem.Prezentation.Web.Controllers
         [Authorize]
         public ActionResult Kreiraj()
         {
+
+            List<MestoBiznisModel> list = _biznis.MestaServis.SvaMesta();
+
+            ViewBag.NazivMesta = new SelectList(list, "Id", "NazivMesta");
+
             return View(new KontaktPrezentacioniModel());
         }
         
@@ -98,6 +105,11 @@ namespace ImenikSem.Prezentation.Web.Controllers
                 KontaktBiznisModel kontaktDataModel = Maper.Map<KontaktBiznisModel>(kontaktPM);
                 kontaktDataModel.Korisnik_id = idTrenutnogKorisnika;
 
+                if(kontaktPM.NazivMesta != null)
+                {
+                    kontaktDataModel.Mesto_id = Int32.Parse(kontaktPM.NazivMesta);
+                }
+                
                 bool rezultat = _biznis.KontaktiServis.KreirajKontakt(kontaktDataModel);
 
                 if(rezultat == true) return RedirectToAction("Pocetna", "Kontakti");
@@ -115,6 +127,19 @@ namespace ImenikSem.Prezentation.Web.Controllers
             KontaktBiznisModel kontaktBM = _biznis.KontaktiServis.KontaktPoId(id);
             KontaktPrezentacioniModel kontaktPM = Maper.Map<KontaktPrezentacioniModel>(kontaktBM);
 
+            List<MestoBiznisModel> list = _biznis.MestaServis.SvaMesta();
+            SelectList SelectItemLista;
+            if (kontaktBM.Mesto_id != null)
+            {
+                SelectItemLista = new SelectList(list, "Id", "NazivMesta", kontaktBM.Mesto_id);
+            }
+            else
+            {
+                 SelectItemLista = new SelectList(list, "Id", "NazivMesta");
+            }
+
+            ViewBag.NazivMesta = SelectItemLista;
+
             return View(kontaktPM);
         }
 
@@ -126,6 +151,11 @@ namespace ImenikSem.Prezentation.Web.Controllers
             if (ModelState.IsValid)
             {
                 KontaktBiznisModel kontaktBM = Maper.Map<KontaktBiznisModel>(kontaktPM);
+                if (kontaktPM.NazivMesta != null)
+                {
+                    kontaktBM.Mesto_id = Int32.Parse(kontaktPM.NazivMesta);
+                }
+
                 bool rezultat =_biznis.KontaktiServis.IzmeniKontakt(kontaktBM);
 
                 if (rezultat == true) return RedirectToAction("Pocetna", "Kontakti");

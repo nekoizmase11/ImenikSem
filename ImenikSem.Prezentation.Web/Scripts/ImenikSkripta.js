@@ -39,22 +39,25 @@ $(document).ready(function () {
         $.each(podaci.Kontakti, function (index, value) {
             console.log(value);
             var red = `
-                    <tr>
+        <tr>
         <td>
             `+ value.Ime + `
-                        </td>
+        </td>
         <td>
             `+ value.Prezime + `
-                        </td>
+        </td>
         <td>
             `+ value.Broj + `
-                        </td>
+        </td>
+        <td>
+            `+ value.NazivMesta + `
+        </td>
         <td>
             <a href="/Kontakti/Izmeni/`+ value.Id + `">Izmeni</a> |
                             <a onclick="return confirm('Da li zelite da obrisete kontakt: `+ value.Ime + ` ` + value.Prezime + `? ')" href="/Kontakti/Obrisi/` + value.Id + `">Obrisi</a>
         </td>
-    </tr>
-    `;
+        </tr>
+        `;
             redovi += red;
         });
 
@@ -64,13 +67,16 @@ $(document).ready(function () {
         <tr>
             <th>
                 Ime
-                </th>
+            </th>
             <th>
                 Prezime
-                </th>
+            </th>
             <th>
                 Broj
-                </th>
+            </th>
+            <th>
+                Mesto
+            </th>
             <th></th>
         </tr>
         ` + redovi + `

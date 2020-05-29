@@ -14,6 +14,9 @@ namespace ImenikSem.Prezentation.Web.AutoMapperConfiguracija
         {
             CreateMap<KontaktBiznisModel, KontaktPrezentacioniModel>();
             CreateMap<KontaktPrezentacioniModel, KontaktBiznisModel>();
+
+            CreateMap<MestoPrezentacioniModel, MestoBiznisModel>();
+            CreateMap<MestoBiznisModel, MestoPrezentacioniModel>();
         }
 
 

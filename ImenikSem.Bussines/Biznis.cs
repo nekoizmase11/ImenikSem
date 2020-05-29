@@ -10,6 +10,7 @@ namespace ImenikSem.Bussines
 
         private IKontaktiServis kontaktiServis;
         private IKorisniciServis korisniciServis;
+        private IMestaServis mestaServis;
 
         public Biznis(IUnitOfWork unitOfWork)
         {
@@ -37,6 +38,18 @@ namespace ImenikSem.Bussines
                     korisniciServis = new KorisniciServis(_unitOfWork);
                 }
                 return korisniciServis;
+            }
+        }
+
+        public IMestaServis MestaServis
+        {
+            get
+            {
+                if (mestaServis == null)
+                {
+                    mestaServis = new MestaServis(_unitOfWork);
+                }
+                return mestaServis;
             }
         }
 

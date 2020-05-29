@@ -47,16 +47,19 @@
     <Compile Include="Biznis.cs" />
     <Compile Include="BiznisModeli\KontaktBiznisModel.cs" />
     <Compile Include="BiznisModeli\KorisnikBiznisModel.cs" />
+    <Compile Include="BiznisModeli\MestoBiznisModel.cs" />
     <Compile Include="BiznisModeli\PaginacijaBiznisModel.cs" />
     <Compile Include="IBiznis.cs" />
     <Compile Include="Infrastruktura\AutomaperConfiguracija\MapperBiznisProfil.cs" />
     <Compile Include="Infrastruktura\HesovanjeStringa\Heser.cs" />
     <Compile Include="InterfejsiZaServise\IKontaktiServis.cs" />
     <Compile Include="InterfejsiZaServise\IKorisniciServis.cs" />
+    <Compile Include="InterfejsiZaServise\IMestaServis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servisi\BazniServis.cs" />
     <Compile Include="Servisi\KontaktiServis.cs" />
     <Compile Include="Servisi\KorisniciServis.cs" />
+    <Compile Include="Servisi\MestaServis.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

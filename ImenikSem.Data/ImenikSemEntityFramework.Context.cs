@@ -29,6 +29,7 @@ namespace ImenikSem.Data
     
         public virtual DbSet<Kontakt> Kontakt { get; set; }
         public virtual DbSet<Korisnik> Korisnik { get; set; }
+        public virtual DbSet<Mesto> Mesto { get; set; }
     
         public virtual int NajcescePregledani(Nullable<int> korisnik_id)
         {

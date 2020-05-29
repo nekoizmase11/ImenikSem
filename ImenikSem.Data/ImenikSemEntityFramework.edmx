@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ImenikBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ImenikBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Kontakt">
           <Key>
             <PropertyRef Name="Id" />
@@ -15,6 +15,7 @@
           <Property Name="Korisnik_id" Type="int" Nullable="false" />
           <Property Name="Broj" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="BrojPregleda" Type="int" />
+          <Property Name="Mesto_id" Type="int" />
         </EntityType>
         <EntityType Name="Korisnik">
           <Key>
@@ -24,6 +25,25 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Sifra" Type="nchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazivMesta" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Kontakt_To_PK_Mesto">
+          <End Role="Mesto" Type="Self.Mesto" Multiplicity="0..1" />
+          <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kontakt">
+              <PropertyRef Name="Mesto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Kontakti_To_PK_Korisnici">
           <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
           <End Role="Kontakt" Type="Self.Kontakt" Multiplicity="*" />
@@ -42,13 +62,17 @@
         <EntityContainer Name="ImenikBazaModelStoreContainer">
           <EntitySet Name="Kontakt" EntityType="Self.Kontakt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesto" EntityType="Self.Mesto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kontakt_To_PK_Mesto" Association="Self.FK_Kontakt_To_PK_Mesto">
+            <End Role="Mesto" EntitySet="Mesto" />
+            <End Role="Kontakt" EntitySet="Kontakt" />
+          </AssociationSet>
           <AssociationSet Name="FK_Kontakti_To_PK_Korisnici" Association="Self.FK_Kontakti_To_PK_Korisnici">
             <End Role="Korisnik" EntitySet="Korisnik" />
             <End Role="Kontakt" EntitySet="Kontakt" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ImenikBazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -63,6 +87,8 @@
           <Property Name="Broj" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BrojPregleda" Type="Int32" />
           <NavigationProperty Name="Korisnik" Relationship="Self.FK_Kontakti_To_PK_Korisnici" FromRole="Kontakt" ToRole="Korisnik" />
+          <Property Name="Mesto_id" Type="Int32" />
+          <NavigationProperty Name="Mesto" Relationship="ImenikBazaModel.FK_Kontakt_To_PK_Mesto" FromRole="Kontakt" ToRole="Mesto" />
         </EntityType>
         <EntityType Name="Korisnik">
           <Key>
@@ -93,9 +119,34 @@
             <End Role="Kontakt" EntitySet="Kontakt" />
           </AssociationSet>
           <FunctionImport Name="NajcescePregledani">
-            <Parameter Name="Korisnik_id" Mode="In" Type="Int32" />
+          <Parameter Name="Korisnik_id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Mesto" EntityType="ImenikBazaModel.Mesto" />
+          <AssociationSet Name="FK_Kontakt_To_PK_Mesto" Association="ImenikBazaModel.FK_Kontakt_To_PK_Mesto">
+            <End Role="Mesto" EntitySet="Mesto" />
+            <End Role="Kontakt" EntitySet="Kontakt" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazivMesta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kontakt" Relationship="ImenikBazaModel.FK_Kontakt_To_PK_Mesto" FromRole="Mesto" ToRole="Kontakt" />
+        </EntityType>
+        <Association Name="FK_Kontakt_To_PK_Mesto">
+          <End Type="ImenikBazaModel.Mesto" Role="Mesto" Multiplicity="0..1" />
+          <End Type="ImenikBazaModel.Kontakt" Role="Kontakt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kontakt">
+              <PropertyRef Name="Mesto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -105,6 +156,7 @@
           <EntitySetMapping Name="Kontakt">
             <EntityTypeMapping TypeName="ImenikBazaModel.Kontakt">
               <MappingFragment StoreEntitySet="Kontakt">
+                <ScalarProperty Name="Mesto_id" ColumnName="Mesto_id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
@@ -124,6 +176,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="NajcescePregledani" FunctionName="ImenikBazaModel.Store.NajcescePregledani" />
+          <EntitySetMapping Name="Mesto">
+            <EntityTypeMapping TypeName="ImenikBazaModel.Mesto">
+              <MappingFragment StoreEntitySet="Mesto">
+                <ScalarProperty Name="NazivMesta" ColumnName="NazivMesta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

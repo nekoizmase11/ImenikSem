@@ -154,7 +154,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KontaktPrezentacioniModel.cs" />
+    <Compile Include="Models\KontaktSaMestimaPrezentacioniModel.cs" />
     <Compile Include="Models\KorisnikPrezentacioniModel.cs" />
+    <Compile Include="Models\MestoPrezentacioniModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
