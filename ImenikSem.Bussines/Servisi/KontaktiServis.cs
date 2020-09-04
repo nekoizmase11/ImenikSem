@@ -28,7 +28,7 @@ namespace ImenikSem.Bussines.Servisi
             {
                 if(kontakt.Mesto_id != null)
                 {
-                    string nazivMestakontakta = _unitOfWork.Mesta.PretragaPoId(kontakt.Mesto_id ?? 1).NazivMesta;
+                    string nazivMestakontakta = _unitOfWork.Mesta.PretragaPoId(kontakt.Mesto_id).NazivMesta;
                     kontakt.NazivMesta = nazivMestakontakta;
                 }
                 else

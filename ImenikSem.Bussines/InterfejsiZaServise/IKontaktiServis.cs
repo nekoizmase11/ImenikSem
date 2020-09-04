@@ -1,4 +1,5 @@
 ﻿using ImenikSem.Bussines.BiznisModeli;
+using ImenikSem.Data;
 using System.Collections.Generic;
 
 namespace ImenikSem.Bussines.InterfejsiZaServise
@@ -14,5 +15,6 @@ namespace ImenikSem.Bussines.InterfejsiZaServise
         bool ObrisiKontakt(int id);
         //procedura
         List<KontaktBiznisModel> NajcescePregledaniKontakti(int idKorisnika);
+        bool InkrementBrojaPregleda(IEnumerable<Kontakt> ListaZaInkrement);
     }
 }

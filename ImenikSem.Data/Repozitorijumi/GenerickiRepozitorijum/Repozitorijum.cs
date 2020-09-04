@@ -25,7 +25,7 @@ namespace ImenikSem.Data.Repozitorijumi.GenerickiRepozitorijum
             _context.Set<T>().Remove(entitet);
         }
 
-        public T PretragaPoId(int id)
+        public T PretragaPoId(int? id)
         {
             return _context.Set<T>().Find(id);
         }
